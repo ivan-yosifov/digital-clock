@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Digital Clock</title>
+	<style>
+		@font-face{
+			font-family: DS-Digital;
+			src: url(DS-DIGI.TTF);
+		}
+		*{
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+		}
+		body{
+			background: #49cfae;
+		}
+		.container{
+			width: 600px;
+			height: 600px;
+			position: absolute;
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			margin: auto;
+		}
+		.clock{
+			width: 450px;
+			height: 180px;
+			background: #f6f7fb;
+			border-radius: 8px;
+			position: absolute;
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			margin: auto;
+		}
+		.clock:before{
+			content: '';
+			width: 240px;
+			height: 10px;
+			background: #ed4035;
+			border-radius: 6px 6px 0 0;
+			position: absolute;
+			top: -10px;
+			left: 0;
+			right: 0;
+			margin: auto;
+		}
+		.clock:after{
+			content: '';
+			width: 45px;
+			height: 15px;
+			background: #3e3e3e;
+			border-radius: 0 0 10px 10px;
+			position: absolute;
+			left: 40px;
+			bottom: -15px;
+			box-shadow: 325px 0 0 #3e3e3e;
+		}
+		.display{
+			width: 390px;
+			height: 140px;
+			background: #434a54;
+			border-radius: 8px;
+			position: absolute;
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			margin: auto;
+		}
+		.time{
+			font-family: DS-Digital;
+			color: #67fe71;
+			font-size: 140px;
+			text-align: center;
+			line-height: 1em;
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<div class="clock">
+			<div class="display">
+				<div class="time">
+					<span id="hours">07</span>:<span id="minutes">30</span>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script>
+		const hoursEl = document.getElementById('hours');
+		const minutesEl = document.getElementById('minutes');
+
+		getCurrentTime();
+
+		setInterval(getCurrentTime, 1000);
+
+		function getCurrentTime(){
+			const currentDate = new Date();
+			let hours = currentDate.getHours();
+			let minutes = currentDate.getMinutes();
+
+			if (hours < 10) hours = '0' + hours;
+			if (minutes < 10) minutes = '0' + minutes;
+
+			hoursEl.textContent = hours;
+			minutesEl.textContent = minutes;
+		}
+	</script>
+</body>
+</html>
